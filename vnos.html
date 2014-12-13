@@ -6,9 +6,6 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <link href = "css/bootstrap.min.css" rel = "stylesheet">
                     <link href = "css/styles.css" rel = "stylesheet">
-                    <script src = "js/bootstrap.js"></script>
-					<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
-					<script type="text/javascript" src="demo.js"></script>
             </head>
             <body style="background-color:lightgray">
      
@@ -27,9 +24,9 @@
                                    
                                             <ul class = "nav navbar-nav navbar-right">
                                            
-                                                    <li class = "active"><a href = "index.html">Domov</a></li>
+                                                    <li><a href = "index.html">Domov</a></li>
                                                     <li><a href = "ustvari.html">Kreiranje</a></li>
-                                                    <li><a href = "vnos.html">Vnos</a></li>
+                                                    <li class = "active"><a href = "vnos.html">Vnos</a></li>
                                                     <li><a href = "branje.html">Branje</a></li>
 													<li><a href = "grafi.html">Grafi</a></li>
 													<li><a href = "gps.html">GPS</a></li>
@@ -40,15 +37,6 @@
                                    
                             </div>
                     </div>
-					<h1 id="naslov_clanka"  style="font-family: Georgia, Serif;width: 50%;margin: 0 auto;color:#009900">Izsledki raziskave kažejo, da so najbolj zdravi študentje, ki živijo pri starših </h1>
-					<br></br>
-					<p id="vir" style="font-family: Georgia, Serif;width: 50%;margin: 0 auto;color:gray">Viri: &#269asopis Dnevnik, http://www.cos.edu/</p>
-					<br></br>
-					<div id="main" style="font-family: Georgia, Serif;width: 50%;margin: 0 auto;word-break:break-words;overflow-x">
-					</div>
-					<br></br>
-					<br></br>
-
 					
 					 <div class = "navbar navbar-default navbar-fixed-bottom" style="background-color:lightgray">
                
@@ -58,20 +46,8 @@
                
 					</div>
      
-
-					<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-					<script>
-					$.ajaxSetup({
-						  contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-						  beforeSend: function(jqXHR) {
-							jqXHR.overrideMimeType('application/x-www-form-urlencoded; charset=UTF-8');
-						  }
-						});
-					$(document).ready(function(){
-						$("#main").load("clanek.txt");
-					});
-					
-					</script>
+                    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                    <script src = "js/bootstrap.js"></script>
                    
             </body>
     </html>
