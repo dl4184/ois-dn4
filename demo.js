@@ -238,6 +238,7 @@ function preberiMeritveVitalnihZnakov() {
 	sessionId = getSessionId();	
 	data=[];
 	datumi=[];
+	var k=0;
 	var ehrId = $("#meritveVitalnihZnakovEHRid").val();
 	var tip = $("#preberiTipZaVitalneZnake").val();
 	console.log("dela\n")
@@ -261,8 +262,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna temperatura</th></tr>";
 						        for (var i in res) {
-						        	datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].temperature;
+						        	datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].temperature;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].temperature + " " 	+ res[i].unit + "</td>";
 						        }
 						        results += "</table>";
@@ -285,8 +287,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna teža</th></tr>";
 						        for (var i in res) {
-						      		datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].weight;
+						      		datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].weight;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].weight + " " 	+ res[i].unit + "</td>";
 						        }
 						        results += "</table>";
@@ -309,8 +312,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Diastolični krvni tlak</th></tr>";
 						        for (var i in res) {
-						        	datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].diastolic;
+						        	datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].diastolic;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].diastolic + " " 	+ res[i].unit + "</td>";
 						        }
 						        results += "</table>";
@@ -335,8 +339,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Siastolični krvni tlak</th></tr>";
 						        for (var i in res) {
-						        	datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].systolic;
+						        	datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].systolic;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].systolic + " " 	+ res[i].unit + "</td>";
 						        }
 						        results += "</table>";
@@ -360,8 +365,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna teža</th></tr>";
 						        for (var i in res) {
-						        	datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].spO2
+						        	datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].spO2;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].spO2 + " %"+ "</td>";
 						        }
 						        results += "</table>";
@@ -385,8 +391,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna višina</th></tr>";
 						        for (var i in res) {
-						        	datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].height;
+						        	datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].height;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].height + " " 	+ res[i].unit + "</td>";
 						        }
 						        results += "</table>";
@@ -410,8 +417,9 @@ function preberiMeritveVitalnihZnakov() {
 					    	if (res.length > 0) {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Utrip srca</th></tr>";
 						        for (var i in res) {
-						        	datumi[i]=res[i].time.substring(0, 10);
-						        	data[i]=res[i].pulse;
+						        	datumi[k]=res[k].time.substring(0, 10);
+						        	data[k]=res[k].pulse;
+						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].pulse + " " 	+ res[i].unit + "</td>";
 						        }
 						        results += "</table>";
