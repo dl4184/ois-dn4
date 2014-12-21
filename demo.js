@@ -5,6 +5,204 @@ var queryUrl = baseUrl + '/query';
 var username = "ois.seminar";
 var password = "ois4fri";
 
+function dodajMeritveRandom(){
+		dodajMeritveRandom1();
+		dodajMeritveRandom2();
+		dodajMeritveRandom3();
+
+}
+function dodajMeritveRandom1(){
+	
+	var ehrId = "1088c1e5-98ea-48ba-9f2e-6235a6b683a9";
+	var merilec = "Sestra Micka";
+	var datumInUra = new Date();
+	datumInUra.setDate();
+	datumInUra.setFullYear(2014);
+	for(var i=0;i<11;i++){
+		var mesec=datumInUra.getMonth();
+		datumInUra.setMonth(mesec+1);
+	sessionId = getSessionId();
+	var telesnaVisina = 180+Math.random()*3;
+	var telesnaTeza = 80+(Math.random() < 0.5 ? -1 : 1)*Math.random()*2;
+	var telesnaTemperatura = 37 +(Math.random() < 0.5 ? -1 : 1)*Math.random();
+	var sistolicniKrvniTlak = 120+(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	var diastolicniKrvniTlak = 80+(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	var nasicenostKrviSKisikom = 98+(Math.random() < 0.5 ? -1 : 1)*Math.random();
+	if (nasicenostKrviSKisikom>100){
+		nasicenostKrviSKisikom=nasicenostKrviSKisikom-5;
+		}
+	var utripSrca=80 +(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	
+			$.ajaxSetup({
+		    headers: {"Ehr-Session": sessionId}
+		});
+		var podatki = {
+			// Preview Structure: https://rest.ehrscape.com/rest/v1/template/Vital%20Signs/example
+		    "ctx/language": "en",
+		    "ctx/territory": "SI",
+		    "ctx/time": datumInUra,
+		    "vital_signs/height_length/any_event/body_height_length": telesnaVisina,
+		    "vital_signs/body_weight/any_event/body_weight": telesnaTeza,
+		   	"vital_signs/body_temperature/any_event/temperature|magnitude": telesnaTemperatura,
+		    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
+		    "vital_signs/blood_pressure/any_event/systolic": sistolicniKrvniTlak,
+		    "vital_signs/blood_pressure/any_event/diastolic": diastolicniKrvniTlak,
+		    "vital_signs/pulse:0/any_event:0/rate|magnitude":utripSrca,
+		    "vital_signs/pulse:0/any_event:0/rate|unit":"/min",
+		    "vital_signs/indirect_oximetry:0/spo2|numerator": nasicenostKrviSKisikom
+		};
+		var parametriZahteve = {
+		    "ehrId": ehrId,
+		    templateId: 'Vital Signs',
+		    format: 'FLAT',
+		    committer: merilec
+		};
+		$.ajax({
+		    url: baseUrl + "/composition?" + $.param(parametriZahteve),
+		    type: 'POST',
+		    contentType: 'application/json',
+		    data: JSON.stringify(podatki),
+		    success: function (res) {
+		        $("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-success fade-in'>" + res.meta.href + ".</span>");
+		    },
+		    error: function(err) {
+		    	$("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+		    }
+		});
+		}
+}
+
+function dodajMeritveRandom2(){
+		var ehrId = "66ed8c99-127b-4a62-9b90-02e8469875d2";
+	var merilec = "Sestra Jožefa";
+	var datumInUra = new Date();
+	datumInUra.setDate();
+	datumInUra.setFullYear(2014);
+	for(var i=0;i<11;i++){
+		var mesec=datumInUra.getMonth();
+		datumInUra.setMonth(mesec+1);
+	sessionId = getSessionId();
+	var telesnaVisina = 165+Math.random()*3;
+	var telesnaTeza = 67+(Math.random() < 0.5 ? -1 : 1)*Math.random()*2;
+	var telesnaTemperatura = 37 +(Math.random() < 0.5 ? -1 : 1)*Math.random();
+	var sistolicniKrvniTlak = 120+(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	var diastolicniKrvniTlak = 80+(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	var nasicenostKrviSKisikom = 97+(Math.random() < 0.5 ? -1 : 1)*Math.random();
+	if (nasicenostKrviSKisikom>100){
+		nasicenostKrviSKisikom=nasicenostKrviSKisikom-5;
+		}
+	var utripSrca=80 +(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	
+			$.ajaxSetup({
+		    headers: {"Ehr-Session": sessionId}
+		});
+		var podatki = {
+			// Preview Structure: https://rest.ehrscape.com/rest/v1/template/Vital%20Signs/example
+		    "ctx/language": "en",
+		    "ctx/territory": "SI",
+		    "ctx/time": datumInUra,
+		    "vital_signs/height_length/any_event/body_height_length": telesnaVisina,
+		    "vital_signs/body_weight/any_event/body_weight": telesnaTeza,
+		   	"vital_signs/body_temperature/any_event/temperature|magnitude": telesnaTemperatura,
+		    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
+		    "vital_signs/blood_pressure/any_event/systolic": sistolicniKrvniTlak,
+		    "vital_signs/blood_pressure/any_event/diastolic": diastolicniKrvniTlak,
+		    "vital_signs/pulse:0/any_event:0/rate|magnitude":utripSrca,
+		    "vital_signs/pulse:0/any_event:0/rate|unit":"/min",
+		    "vital_signs/indirect_oximetry:0/spo2|numerator": nasicenostKrviSKisikom
+		};
+		var parametriZahteve = {
+		    "ehrId": ehrId,
+		    templateId: 'Vital Signs',
+		    format: 'FLAT',
+		    committer: merilec
+		};
+		$.ajax({
+		    url: baseUrl + "/composition?" + $.param(parametriZahteve),
+		    type: 'POST',
+		    contentType: 'application/json',
+		    data: JSON.stringify(podatki),
+		    success: function (res) {
+		        $("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-success fade-in'>" + res.meta.href + ".</span>");
+		    },
+		    error: function(err) {
+		    	$("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+		    }
+		});
+		}
+
+
+
+}
+
+function dodajMeritveRandom3(){
+	var ehrId = "65b0493b-9bc9-499c-8645-94027beaf8a4";
+	var merilec = "Sestra Štefana";
+	var datumInUra = new Date();
+	datumInUra.setDate();
+	datumInUra.setFullYear(2014);
+	for(var i=0;i<11;i++){
+		var mesec=datumInUra.getMonth();
+		datumInUra.setMonth(mesec+1);
+	sessionId = getSessionId();
+	var telesnaVisina = 175+Math.random()*3;
+	var telesnaTeza = 75+(Math.random() < 0.5 ? -1 : 1)*Math.random()*2;
+	var telesnaTemperatura = 38 +(Math.random() < 0.5 ? -1 : 1)*Math.random();
+	var sistolicniKrvniTlak = 122+(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	var diastolicniKrvniTlak = 89+(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	var nasicenostKrviSKisikom = 95+(Math.random() < 0.5 ? -1 : 1)*Math.random();
+	if (nasicenostKrviSKisikom>100){
+		nasicenostKrviSKisikom=nasicenostKrviSKisikom-5;
+		}
+	var utripSrca=80 +(Math.random() < 0.5 ? -1 : 1)*Math.random()*5;
+	
+			$.ajaxSetup({
+		    headers: {"Ehr-Session": sessionId}
+		});
+		var podatki = {
+			// Preview Structure: https://rest.ehrscape.com/rest/v1/template/Vital%20Signs/example
+		    "ctx/language": "en",
+		    "ctx/territory": "SI",
+		    "ctx/time": datumInUra,
+		    "vital_signs/height_length/any_event/body_height_length": telesnaVisina,
+		    "vital_signs/body_weight/any_event/body_weight": telesnaTeza,
+		   	"vital_signs/body_temperature/any_event/temperature|magnitude": telesnaTemperatura,
+		    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
+		    "vital_signs/blood_pressure/any_event/systolic": sistolicniKrvniTlak,
+		    "vital_signs/blood_pressure/any_event/diastolic": diastolicniKrvniTlak,
+		    "vital_signs/pulse:0/any_event:0/rate|magnitude":utripSrca,
+		    "vital_signs/pulse:0/any_event:0/rate|unit":"/min",
+		    "vital_signs/indirect_oximetry:0/spo2|numerator": nasicenostKrviSKisikom
+		};
+		var parametriZahteve = {
+		    "ehrId": ehrId,
+		    templateId: 'Vital Signs',
+		    format: 'FLAT',
+		    committer: merilec
+		};
+		$.ajax({
+		    url: baseUrl + "/composition?" + $.param(parametriZahteve),
+		    type: 'POST',
+		    contentType: 'application/json',
+		    data: JSON.stringify(podatki),
+		    success: function (res) {
+		        $("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-success fade-in'>" + res.meta.href + ".</span>");
+		    },
+		    error: function(err) {
+		    	$("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+		    }
+		});
+		}
+
+
+
+
+}
+
+
 function getSessionId() {
     var response = $.ajax({
         type: "POST",
@@ -88,7 +286,7 @@ function preberiEHRBolnika() {
 }
 
 
-function dodajMeritveVitalnihZnakov() {
+function dodajMeritveVitalnihZnakov(tr) {
 	sessionId = getSessionId();
 
 	var ehrId = $("#dodajVitalnoEHR").val();
@@ -104,6 +302,29 @@ function dodajMeritveVitalnihZnakov() {
 	if (!ehrId || ehrId.trim().length == 0) {
 		$("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Prosim vnesite zahtevane podatke!</span>");
 	} else {
+		var Opozorilo="";
+		if (utripSrca<60){
+			Opozorilo+="Nizek srcni utrip!\n";
+			}
+		else if(utripSrca>100){
+				Opozorilo+="Visok srčni utrip!\n";
+				}
+		if(telesnaTemperatura<35){
+				Opozorilo+="Podhladitev!\n";
+				}
+		else if(telesnaTemperatura>38){
+				Opozorilo+="Vročina!\n";
+			}
+		if(nasicenostKrviSKisikom<90&& nasicenostKrviSKisikom>80){
+			Opozorilo+="Nevarnost hipoksemije!\n";
+			}
+		else if(nasicenostKrviSKisikom<81){
+			Opozorilo+="SpO2 je izjemno nizek, pokličite reševalca !";
+		}
+		
+		if(Opozorilo.length>0&&tr==1){
+		window.alert(Opozorilo);}
+				
 		$.ajaxSetup({
 		    headers: {"Ehr-Session": sessionId}
 		});
@@ -118,7 +339,7 @@ function dodajMeritveVitalnihZnakov() {
 		    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
 		    "vital_signs/blood_pressure/any_event/systolic": sistolicniKrvniTlak,
 		    "vital_signs/blood_pressure/any_event/diastolic": diastolicniKrvniTlak,
-		    "vital_signs/pulse:0/any_event:0/rate|magnitude":utripSrca,//ne prebere dobro utripa-undefined
+		    "vital_signs/pulse:0/any_event:0/rate|magnitude":utripSrca,
 		    "vital_signs/pulse:0/any_event:0/rate|unit":"/min",
 		    "vital_signs/indirect_oximetry:0/spo2|numerator": nasicenostKrviSKisikom
 		};
@@ -185,7 +406,7 @@ function preberiEHRBolnikaDan(){
 							"where t/data[at0002]/events[at0003]/time/value>'"+datum1+"' " +
 							"and t/data[at0002]/events[at0003]/time/value<'"+datum2+"' " +
 							"order by t/data[at0002]/events[at0003]/time/value desc " +
-							"limit 10000";
+							"limit 10";
 						$.ajax({
 							
 							url: baseUrl + "/query?" + $.param({"aql": AQL}),
@@ -231,17 +452,14 @@ function preberiEHRBolnikaDan(){
 	}
 }
 
-var data=[];
+var podatki=[];
 var datumi=[];
-
+var k;
 function preberiMeritveVitalnihZnakov() {
 	sessionId = getSessionId();	
-	data=[];
-	datumi=[];
-	var k=0;
+	k=0;
 	var ehrId = $("#meritveVitalnihZnakovEHRid").val();
 	var tip = $("#preberiTipZaVitalneZnake").val();
-	console.log("dela-")
 
 	if (!ehrId || ehrId.trim().length == 0 || !tip || tip.trim().length == 0) {
 		$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Prosim vnesite zahtevan podatek!");
@@ -251,6 +469,7 @@ function preberiMeritveVitalnihZnakov() {
 	    	type: 'GET',
 	    	headers: {"Ehr-Session": sessionId},
 	    	success: function (data) {
+				
 				var party = data.party;
 				$("#rezultatMeritveVitalnihZnakov").html("<br/><span>Pridobivanje podatkov za <b>'" + tip + "'</b> bolnika <b>'" + party.firstNames + " " + party.lastNames + "'</b>.</span><br/><br/>");
 				if (tip == "telesna temperatura") {
@@ -263,7 +482,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna temperatura</th></tr>";
 						        for (var i in res) {
 						        	datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].temperature;
+						        	podatki[k]=res[k].temperature;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].temperature + " " 	+ res[i].unit + "</td>";
 						        }
@@ -288,7 +507,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna teža</th></tr>";
 						        for (var i in res) {
 						      		datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].weight;
+						        	podatki[k]=res[k].weight;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].weight + " " 	+ res[i].unit + "</td>";
 						        }
@@ -313,7 +532,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Diastolični krvni tlak</th></tr>";
 						        for (var i in res) {
 						        	datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].diastolic;
+						        	podatki[k]=res[k].diastolic;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].diastolic + " " 	+ res[i].unit + "</td>";
 						        }
@@ -340,7 +559,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Siastolični krvni tlak</th></tr>";
 						        for (var i in res) {
 						        	datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].systolic;
+						        	podatki[k]=res[k].systolic;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].systolic + " " 	+ res[i].unit + "</td>";
 						        }
@@ -366,7 +585,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna teža</th></tr>";
 						        for (var i in res) {
 						        	datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].spO2;
+						        	podatki[k]=res[k].spO2;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].spO2 + " %"+ "</td>";
 						        }
@@ -392,7 +611,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna višina</th></tr>";
 						        for (var i in res) {
 						        	datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].height;
+						        	podatki[k]=res[k].height;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].height + " " 	+ res[i].unit + "</td>";
 						        }
@@ -418,7 +637,7 @@ function preberiMeritveVitalnihZnakov() {
 						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Utrip srca</th></tr>";
 						        for (var i in res) {
 						        	datumi[k]=res[k].time.substring(0, 10);
-						        	data[k]=res[k].pulse;
+						        	podatki[k]=res[k].pulse;
 						        	k=k+1;
 						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].pulse + " " 	+ res[i].unit + "</td>";
 						        }
@@ -442,9 +661,15 @@ function preberiMeritveVitalnihZnakov() {
 	    	}
 		});
 	}
-	console.log(datumi[0]);
-	console.log(data[0]);
+	
 }
+function getDatumi(){
+	return datumi;
+}
+function getPodatki(){
+	return podatki;
+}
+
 
 
 

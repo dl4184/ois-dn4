@@ -9,6 +9,119 @@
                     <link href = "css/bootstrap.min.css" rel = "stylesheet">
                     <link href = "css/styles.css" rel = "stylesheet">
                     <script src="demo.js"></script>
+					<script src="http://d3js.org/d3.v3.min.js"></script>
+					<script>
+						
+						function izpis(){
+						preberiMeritveVitalnihZnakov('telesna temperatura');
+						setTimeout(function() { izpis2(); }, 500);
+							}
+						function izpis2(){
+									var String="";
+									var izbrano = $("#preberiTipZaVitalneZnake").val();
+									if(izbrano=="utrip srca"){String="Utrip [/min]";}
+									else if (izbrano=="telesna višina"){String="Višina [cm]";}
+									else if (izbrano=="telesna teža"){String="Teža [kg]";}
+									else if (izbrano=="sistolični krvni tlak"){String="siastolični mm[Hg]";}
+									else if (izbrano=="diastolični krvni tlak"){String="diastolični mm[Hg]";}
+									else if (izbrano=="telesna temperatura"){String="Temperatura [°C]";}
+									else if (izbrano=="nasičenost krvi s kisikom"){String="spO2 [%]";}
+									$("#svgid").empty();
+									var dat=getDatumi();
+									var pod=getPodatki();
+									var arrData=new Array([]);
+									for (var j in dat){
+										arrData[j]=[dat[j],parseInt(pod[j])];
+										}
+									console.log(arrData[0][0]+" + "+ arrData[0][1]);
+									//console.log(dat[0]+ " " + pod[0]+" -");
+									var margin = {top: 20, right: 20, bottom: 30, left: 50},
+										width = 950 - margin.left - margin.right,
+										height = 500 - margin.top - margin.bottom;
+
+									var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+
+									var x = d3.time.scale()
+										.range([0, width])
+
+									var y = d3.scale.linear()
+										.range([height, 0]);
+
+									var xAxis = d3.svg.axis()
+										.scale(x)
+										.orient("bottom");
+
+									var yAxis = d3.svg.axis()
+										.scale(y)
+										.orient("left");
+
+									var line = d3.svg.line()
+										.x(function(d) { return x(d.date); })
+										.y(function(d) { return y(d.close); });
+
+									var svg = d3.select('svg')
+										.attr("width", width + margin.left + margin.right)
+										.attr("height", height + margin.top + margin.bottom)
+									  .append("g")
+										.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+									  var data = arrData.map(function(d) {
+										  return {
+											 date: parseDate(d[0]),
+											 close: d[1]
+										  };
+										  
+									  });
+
+									  console.log(data);
+
+
+									  x.domain(d3.extent(data, function(d) { return d.date; }));
+									  y.domain(d3.extent(data, function(d) { return d.close; }));
+										
+									  svg.append("g")
+										  .attr("class", "x axis")
+										  .attr("transform", "translate(0," + height + ")")
+										  .call(xAxis);
+
+									  svg.append("g")
+										  .attr("class", "y axis")
+										  .call(yAxis)
+										.append("text")
+										  .attr("transform", "rotate(-90)")
+										  .attr("y", 6)
+										  .attr("dy", ".71em")
+										  .style("text-anchor", "end")
+										  .text(String);
+
+									  svg.append("path")
+										  .datum(data)
+										  .attr("class", "line")
+										  .attr("d", line);
+
+							}
+					</script>
+					<script src="http://d3js.org/d3.v3.min.js"></script>
+					<style>
+
+							body {
+							  font: 10px sans-serif;
+							}
+
+							.axis path,
+							.axis line {
+							  fill: none;
+							  stroke: #000;
+							  shape-rendering: crispEdges;
+							}
+
+
+							.line {
+							  fill: none;
+							  stroke: darkorange;
+							  stroke-width: 1.5px;
+					}</style>
             </head>
             <body>
      
@@ -40,19 +153,20 @@
                                    
                             </div>
                     </div>
-                    <div style="width:75%;margin: 0 auto">
+                    <div style="width:75%;margin: 0 auto" id="main">
                                 <div class="panel panel-default" style="width: 75%;margin: 0 auto">
 					        <div class="panel-heading">
 						        <div class="row">
 							        <div class="col-lg-6 col-md-6 col-sm-6">Pregled meritev vitalnih znakov bolnika</div>
 							        <div class="col-lg-3 col-md-3 col-sm-3"><select class="form-control input-sm" id="preberiTipZaVitalneZnake"><option value="telesna višina">telesna višina</option><option value="telesna teža">telesna teža</option><option value="telesna temperatura">telesna temperatura</option><option value="diastolični krvni tlak">diastolični krvni tlak</option><option value="sistolični krvni tlak">sistolični krvni tlak</option><option value="nasičenost krvi s kisikom">nasičenost krvi s kisikom</option><option value="utrip srca">utrip srca</option></select></div>
-							        <div class="col-lg-3 col-md-3 col-sm-3"><select class="form-control input-sm" id="preberiEhrIdZaVitalneZnake"><option value=""></option><option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Ata Smrk</option></select></div>
+							        <div class="col-lg-3 col-md-3 col-sm-3"><select class="form-control input-sm" id="preberiEhrIdZaVitalneZnake"><option value=""></option><option value="1088c1e5-98ea-48ba-9f2e-6235a6b683a9">Miha Novak</option><option value="66ed8c99-127b-4a62-9b90-02e8469875d2">Živa Groza</option><option value="65b0493b-9bc9-499c-8645-94027beaf8a4">Jure Kovač</option></select></div>
 						        </div>
 					        </div>				
     					    <div class="panel-body">
     						    <span class="label label-default">EHR ID</span><input id="meritveVitalnihZnakovEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
-    						    <button type="button" class="btn btn-success btn-xs" onclick="preberiMeritveVitalnihZnakov('telesna temperatura')">Preberi meritve vitalnih znakov</button><span id="preberiMeritveVitalnihZnakovSporocilo"></span>
-    						    <div id="rezultatMeritveVitalnihZnakov"></div>
+    						    <button type="button" class="btn btn-success btn-xs"  onclick="izpis()" >Preberi meritve vitalnih znakov</button><span id="preberiMeritveVitalnihZnakovSporocilo"></span>
+								<div id="rezultatMeritveVitalnihZnakovGraf"></div>
+								<svg id="svgid" style="max-width:100%"></svg>
     				  	    </div>
 				        </div>
 				        
