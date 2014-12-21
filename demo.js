@@ -241,7 +241,7 @@ function preberiMeritveVitalnihZnakov() {
 	var k=0;
 	var ehrId = $("#meritveVitalnihZnakovEHRid").val();
 	var tip = $("#preberiTipZaVitalneZnake").val();
-	console.log("dela\n")
+	console.log("dela-")
 
 	if (!ehrId || ehrId.trim().length == 0 || !tip || tip.trim().length == 0) {
 		$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Prosim vnesite zahtevan podatek!");
